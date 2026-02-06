@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "63958433851",
+    "project_id": "scrum-poker-38532",
+    "storage_bucket": "scrum-poker-38532.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63958433851:android:fbffdd4e2c07730cac9c1e",
+        "android_client_info": {
+          "package_name": "com.example.scum_poker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDamaLc_XnRwd3YvbPDP3dD3bsDMOfbEcw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

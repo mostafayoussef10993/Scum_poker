@@ -1,0 +1,34 @@
+name: scum_poker
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_core: ^4.4.0 
+  cloud_firestore: ^6.1.2 
+  flutter_bloc: ^9.1.1
+  equatable: ^2.0.8
+  shared_preferences: ^2.5.3
+  firebase_auth:
+  lottie:
+  get_it: 
+  google_fonts:
+   
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  assets:
+    - assets/
+    - assets/votes/
+    - assets/backgrounds/
+    - assets/buttons/
+  uses-material-design: true
