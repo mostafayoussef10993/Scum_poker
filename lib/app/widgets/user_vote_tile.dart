@@ -18,11 +18,7 @@ class UserVoteTile extends StatelessWidget {
           .snapshots(),
       builder: (context, votesSnapshot) {
         if (!votesSnapshot.hasData) {
-          return ListTile(
-            title: Text(userName),
-            subtitle: Text('User ID: $userId'),
-            trailing: Text('Loading...'),
-          );
+          return ListTile(title: Text(userName), trailing: Text('Loading...'));
         }
 
         final voteDocs = votesSnapshot.data!.docs;
@@ -31,17 +27,32 @@ class UserVoteTile extends StatelessWidget {
             : 'No vote';
 
         return ListTile(
-          title: Text(userName, style: Theme.of(context).textTheme.bodyMedium),
-          subtitle: Text('User ID: $userId'),
+          title: Row(
+            children: [
+              Icon(Icons.person, color: Colors.grey[700], size: 20),
+              SizedBox(width: 8),
+              Text(userName, style: Theme.of(context).textTheme.bodyMedium),
+            ],
+          ),
+
           trailing: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Text(
-                'Vote: $latestVote',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.red,
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 14),
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  ' $latestVote',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red,
+                    fontSize: 18,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
               ),
             ],
