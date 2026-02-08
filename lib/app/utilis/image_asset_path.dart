@@ -1,14 +1,15 @@
 class ImageAssets {
   ImageAssets._();
 
+  static const String voteCup = 'assets/votes/cup.jpg';
   static const String voteOne = 'assets/votes/1.jpg';
   static const String voteTwo = 'assets/votes/2.jpg';
-  static const String voteThree = 'assets/votes/3.jpg';
-  static const String voteFour = 'assets/votes/4.jpg';
   static const String voteFive = 'assets/votes/5.jpg';
-  static const String voteSix = 'assets/votes/6.jpg';
-  static const String voteSeven = 'assets/votes/7.jpg';
   static const String voteEight = 'assets/votes/8.jpg';
+  static const String voteThirteen = 'assets/votes/13.jpg';
+  static const String voteTwenty = 'assets/votes/20.jpg';
+  static const String voteForty = 'assets/votes/40.jpg';
+  static const String voteEighty = 'assets/votes/80.jpg';
   static const String lightBG = 'assets/backgrounds/lightbg.jpg';
   static const String darkBG = 'assets/backgrounds/darkbg.jpg';
   static const String submitButton = 'assets/buttons/submit.png';
@@ -18,13 +19,17 @@ class ImageAssets {
   static const String clearButton = 'assets/buttons/delete.png';
 
   static const List<String> allVotes = [
+    voteCup,
     voteOne,
     voteTwo,
-    voteThree,
-    voteFour,
     voteFive,
-    voteSix,
-    voteSeven,
     voteEight,
+    voteThirteen,
+    voteTwenty,
+    voteForty,
+    voteEighty,
   ];
+
+  // Corresponding vote values for each image
+  static const List<int> voteValues = [0, 1, 2, 3, 5, 8, 13, 20, 40];
 }

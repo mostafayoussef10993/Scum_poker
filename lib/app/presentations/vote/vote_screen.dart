@@ -20,7 +20,7 @@ class VoteScreen extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              Image.asset(ImageAssets.poker, height: 500),
+              Image.asset(ImageAssets.poker, height: 300),
 
               Text(
                 'Select your vote',
@@ -35,9 +35,14 @@ class VoteScreen extends StatelessWidget {
                   ),
                   itemCount: ImageAssets.allVotes.length,
                   itemBuilder: (context, index) {
+                    final voteValues = ImageAssets.voteValues;
+                    final int value = voteValues.length > index
+                        ? voteValues[index]
+                        : index + 1;
+
                     return VoteButton(
                       assetPath: ImageAssets.allVotes[index],
-                      value: index + 1,
+                      value: value,
                       sessionId: sessionId,
                       userId: userId,
                     );

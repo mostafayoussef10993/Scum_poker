@@ -36,13 +36,11 @@ class VoteButton extends StatelessWidget {
           ),
         );
       },
-      child: ClipOval(
-        child: Image.asset(
-          assetPath,
-          width: size,
-          height: size,
-          fit: BoxFit.contain,
-        ),
+      child: Image.asset(
+        assetPath,
+        width: size,
+        height: size,
+        fit: BoxFit.contain,
       ),
     );
   }
