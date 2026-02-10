@@ -105,7 +105,31 @@ class VoteRepository {
     return null;
   }
 
-  // STEP 6: Delete a session and all its data
+  // STEP 6: Clear all votes from a session (keeps users and session)
+  Future<void> clearVotes(String sessionId) async {
+    try {
+      final usersSnap = await _firestore
+          .collection('sessions')
+          .doc(sessionId)
+          .collection('users')
+          .get();
+
+      for (final userDoc in usersSnap.docs) {
+        final votesSnap = await userDoc.reference.collection('votes').get();
+        final batch = _firestore.batch();
+
+        for (final voteDoc in votesSnap.docs) {
+          batch.delete(voteDoc.reference);
+        }
+
+        await batch.commit();
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  // STEP 7: Delete a session and all its data
   Future<void> deleteSession(String sessionId) async {
     final sessionRef = _firestore.collection('sessions').doc(sessionId);
 

@@ -18,7 +18,7 @@ class DropListSession extends StatelessWidget {
     return DropdownButton<SessionModel>(
       value: selectedSession,
       hint: Text(
-        "Select a session",
+        "Select a room",
         style: Theme.of(context).textTheme.bodyMedium,
       ),
       items: sessionList.map((session) {

@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:scum_poker/app/bloc/result_cubit.dart';
-import 'package:scum_poker/app/bloc/vote_cubit.dart';
 import 'package:scum_poker/app/utilis/image_asset_path.dart';
 import 'package:scum_poker/app/utilis/service_locator.dart';
 import 'package:scum_poker/app/data/firebase_repository.dart';
-import 'package:scum_poker/app/presentations/name/name_screen.dart';
-import 'package:quickalert/quickalert.dart'; // Add this import
+import 'package:quickalert/quickalert.dart';
 
-class ClearSessionButton extends StatelessWidget {
+class ClearVotesButton extends StatelessWidget {
   final String sessionId;
-  const ClearSessionButton({Key? key, required this.sessionId})
-    : super(key: key);
+  const ClearVotesButton({Key? key, required this.sessionId}) : super(key: key);
 
   Future<void> _confirm(BuildContext c) async {
     QuickAlert.show(
       context: c,
       type: QuickAlertType.confirm,
-      title: 'Clear session',
-      text: 'Delete all data for this session? This cannot be undone.',
+      title: 'Clear votes',
+      text: 'Delete all votes for this session? This cannot be undone.',
       confirmBtnText: 'Delete',
       cancelBtnText: 'Cancel',
       confirmBtnColor: Colors.red,
@@ -32,12 +28,8 @@ class ClearSessionButton extends StatelessWidget {
         );
 
         try {
-          await getIt<VoteRepository>().deleteSession(sessionId);
-
-          // Unregister cubits
-          if (getIt.isRegistered<ResultCubit>())
-            getIt.unregister<ResultCubit>();
-          if (getIt.isRegistered<VoteCubit>()) getIt.unregister<VoteCubit>();
+          // Clear only votes, not the entire session
+          await getIt<VoteRepository>().clearVotes(sessionId);
 
           Navigator.of(c).pop(); // Close loading
 
@@ -46,15 +38,11 @@ class ClearSessionButton extends StatelessWidget {
             context: c,
             type: QuickAlertType.success,
             title: 'Success!',
-            text: 'Session cleared successfully',
+            text: 'Votes cleared successfully',
             autoCloseDuration: Duration(seconds: 2),
           );
 
-          // Navigate to name screen
-          Navigator.of(c).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (_) => NameScreen()),
-            (route) => false,
-          );
+          // Stay on the same page - no navigation
         } catch (e) {
           Navigator.of(c).pop(); // Close loading
 
@@ -63,7 +51,7 @@ class ClearSessionButton extends StatelessWidget {
             context: c,
             type: QuickAlertType.error,
             title: 'Error',
-            text: 'Failed to clear session: $e',
+            text: 'Failed to clear votes: $e',
           );
         }
       },
@@ -85,7 +73,7 @@ class ClearSessionButton extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           image: DecorationImage(
-            image: AssetImage(ImageAssets.clearButton),
+            image: AssetImage(ImageAssets.delvotesButton),
             fit: BoxFit.cover,
           ),
         ),

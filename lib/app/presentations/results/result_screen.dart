@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scum_poker/app/bloc/result_cubit.dart';
 import 'package:scum_poker/app/utilis/service_locator.dart';
 import 'package:scum_poker/app/widgets/clear_button.dart';
+import 'package:scum_poker/app/widgets/clear_votes_button.dart';
 import 'package:scum_poker/app/widgets/user_vote_tile.dart';
 
 class ResultScreen extends StatelessWidget {
@@ -71,8 +72,12 @@ class ResultScreen extends StatelessWidget {
                     SizedBox(height: 4),
 
                     Center(
-                      child: Column(
-                        children: [ClearSessionButton(sessionId: sessionId)],
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ClearSessionButton(sessionId: sessionId),
+                          ClearVotesButton(sessionId: sessionId),
+                        ],
                       ),
                     ),
                   ],
@@ -86,4 +91,4 @@ class ResultScreen extends StatelessWidget {
       ),
     );
   }
-}
+}*/

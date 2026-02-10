@@ -25,16 +25,6 @@ class VoteButton extends StatelessWidget {
         getIt<VoteCubit>().submitVote(value);
 
         print('Vote submitted: $value');
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => ResultScreen(
-              sessionId: sessionId,
-              userId: userId,
-              votedValue: value,
-            ),
-          ),
-        );
       },
       child: Image.asset(
         assetPath,

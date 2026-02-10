@@ -24,16 +24,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ThemeBackground(
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Center(
-          child: Lottie.asset(
-            'assets/voting.json',
-            width: 200,
-            height: 200,
-            fit: BoxFit.contain,
-          ),
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Center(
+        child: Lottie.asset(
+          'assets/voting.json',
+          width: 200,
+          height: 200,
+          fit: BoxFit.contain,
         ),
       ),
     );
