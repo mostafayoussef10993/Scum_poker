@@ -3,8 +3,6 @@ import 'package:lottie/lottie.dart';
 import 'package:scum_poker/app/presentations/name/name_screen.dart';
 import 'dart:async';
 
-import 'package:scum_poker/app/utilis/app_theme.dart';
-
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();

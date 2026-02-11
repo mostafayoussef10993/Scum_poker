@@ -3,19 +3,17 @@
 class ImageAssets {
   ImageAssets._();
 
-  static const String voteCup = 'assets/votes/cup.jpg';
-  static const String voteZero = 'assets/votes/0.jpg';
-  static const String voteOne = 'assets/votes/1.jpg';
-  static const String voteTwo = 'assets/votes/2.jpg';
-  static const String voteThree = 'assets/votes/3.jpg';
-  static const String voteFive = 'assets/votes/5.jpg';
-  static const String voteEight = 'assets/votes/8.jpg';
-  static const String voteThirteen = 'assets/votes/13.jpg';
-  static const String voteTwenty = 'assets/votes/20.jpg';
-  static const String voteForty = 'assets/votes/40.jpg';
-  static const String voteEighty = 'assets/votes/80.jpg';
-  static const String lightBG = 'assets/backgrounds/lightbg.jpg';
-  static const String darkBG = 'assets/backgrounds/darkbg.jpg';
+  static const String voteCup = 'assets/votes/cup.png';
+  static const String voteZero = 'assets/votes/0.png';
+  static const String voteOne = 'assets/votes/1.png';
+  static const String voteTwo = 'assets/votes/2.png';
+  static const String voteThree = 'assets/votes/3.png';
+  static const String voteFive = 'assets/votes/5.png';
+  static const String voteEight = 'assets/votes/8.png';
+  static const String voteThirteen = 'assets/votes/13.png';
+  static const String voteTwenty = 'assets/votes/20.png';
+  static const String voteForty = 'assets/votes/40.png';
+  static const String voteHundred = 'assets/votes/100.png';
   static const String submitButton = 'assets/buttons/submit.svg';
   static const String avatar = 'assets/avatar.svg';
   static const String poker = 'assets/poker.png';
@@ -32,10 +30,10 @@ class ImageAssets {
     voteThirteen,
     voteTwenty,
     voteForty,
-    voteEighty,
+    voteHundred,
     voteCup,
   ];
 
   // Corresponding vote values for each image
-  static const List<int> voteValues = [0, 1, 2, 3, 5, 8, 13, 20, 40, 80, 666];
+  static const List<int> voteValues = [0, 1, 2, 3, 5, 8, 13, 20, 40, 100, 666];
 }
