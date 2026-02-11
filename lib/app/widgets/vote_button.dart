@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:scum_poker/app/bloc/vote_cubit.dart';
-import 'package:scum_poker/app/presentations/results/result_screen.dart';
 import 'package:scum_poker/app/utilis/service_locator.dart';
 
 class VoteButton extends StatelessWidget {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scum_poker/app/utilis/image_asset_path.dart';
 import 'package:scum_poker/app/utilis/service_locator.dart';
 import 'package:scum_poker/app/data/firebase_repository.dart';
@@ -70,13 +71,8 @@ class ClearVotesButton extends StatelessWidget {
       child: Container(
         width: 80,
         height: 80,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          image: DecorationImage(
-            image: AssetImage(ImageAssets.delvotesButton),
-            fit: BoxFit.cover,
-          ),
-        ),
+        decoration: BoxDecoration(shape: BoxShape.circle),
+        child: SvgPicture.asset(ImageAssets.delvotesButton, fit: BoxFit.cover),
       ),
     );
   }

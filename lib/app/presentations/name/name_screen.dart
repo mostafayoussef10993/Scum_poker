@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:scum_poker/app/models/session_model.dart';
 import 'package:scum_poker/app/utilis/image_asset_path.dart';
 import 'package:scum_poker/app/widgets/drop_list_session.dart';
@@ -34,7 +35,7 @@ class _NameScreenState extends State<NameScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
+              SvgPicture.asset(
                 ImageAssets.avatar,
                 height: 220,
                 width: 220,

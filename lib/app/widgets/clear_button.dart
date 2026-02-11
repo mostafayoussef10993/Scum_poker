@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scum_poker/app/bloc/result_cubit.dart';
 import 'package:scum_poker/app/bloc/vote_cubit.dart';
 import 'package:scum_poker/app/utilis/image_asset_path.dart';
 import 'package:scum_poker/app/utilis/service_locator.dart';
 import 'package:scum_poker/app/data/firebase_repository.dart';
 import 'package:scum_poker/app/presentations/name/name_screen.dart';
-import 'package:quickalert/quickalert.dart'; // Add this import
+import 'package:quickalert/quickalert.dart';
 
 class ClearSessionButton extends StatelessWidget {
   final String sessionId;
@@ -82,13 +83,8 @@ class ClearSessionButton extends StatelessWidget {
       child: Container(
         width: 80,
         height: 80,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          image: DecorationImage(
-            image: AssetImage(ImageAssets.clearButton),
-            fit: BoxFit.cover,
-          ),
-        ),
+        decoration: BoxDecoration(shape: BoxShape.circle),
+        child: SvgPicture.asset(ImageAssets.clearButton, fit: BoxFit.cover),
       ),
     );
   }

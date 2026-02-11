@@ -3,9 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserVoteTile extends StatelessWidget {
   final DocumentSnapshot userDoc;
-  final bool showVote;
 
-  const UserVoteTile({Key? key, required this.userDoc, this.showVote = true}) : super(key: key);
+  const UserVoteTile({Key? key, required this.userDoc}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,24 +44,22 @@ class UserVoteTile extends StatelessWidget {
                 height: 50, // Fixed height
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 14),
                 decoration: BoxDecoration(
-                  color: Colors.grey,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Center(
                   // Center the content
-                  child: !showVote
-                      ? Icon(Icons.visibility_off, color: Colors.grey[700], size: 20)
-                      : (latestVote == 666 || latestVote == '666')
-                          ? Icon(Icons.local_cafe, color: Colors.brown, size: 22)
-                          : Text(
-                              '$latestVote',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.red,
-                                fontSize: 18,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
+                  child: (latestVote == 666 || latestVote == '666')
+                      ? Icon(Icons.local_cafe, color: Colors.blue, size: 22)
+                      : Text(
+                          '$latestVote',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue,
+                            fontSize: 18,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                 ),
               ),
             ],

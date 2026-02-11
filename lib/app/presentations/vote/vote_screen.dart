@@ -8,25 +8,16 @@ import 'package:scum_poker/app/widgets/clear_button.dart';
 import 'package:scum_poker/app/widgets/clear_votes_button.dart';
 import 'package:scum_poker/app/widgets/vote_button.dart';
 import 'package:scum_poker/app/widgets/user_vote_tile.dart';
-import 'package:scum_poker/app/widgets/reveal_button.dart';
-class VoteScreen extends StatefulWidget {
+
+class VoteScreen extends StatelessWidget {
   final String sessionId;
   final String userId;
   const VoteScreen({Key? key, required this.sessionId, required this.userId})
-      : super(key: key);
-
-  @override
-  State<VoteScreen> createState() => _VoteScreenState();
-}
-
-class _VoteScreenState extends State<VoteScreen> {
-  bool _revealed = false;
-
-  void _toggleReveal() => setState(() => _revealed = !_revealed);
+    : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    registerResultCubit(widget.sessionId, widget.userId);
+    registerResultCubit(sessionId, userId);
 
     return MultiBlocProvider(
       providers: [
@@ -72,23 +63,17 @@ class _VoteScreenState extends State<VoteScreen> {
                   return VoteButton(
                     assetPath: ImageAssets.allVotes[index],
                     value: value,
-                    sessionId: widget.sessionId,
-                    userId: widget.userId,
+                    sessionId: sessionId,
+                    userId: userId,
                   );
                 },
               ),
               SizedBox(height: 32),
 
-              // All Votes Title with reveal button
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'All Votes in Session:',
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  RevealButton(revealed: _revealed, onToggle: _toggleReveal),
-                ],
+              // All Votes Title
+              Text(
+                'All Votes in Session:',
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
               SizedBox(height: 12),
 
@@ -122,7 +107,6 @@ class _VoteScreenState extends State<VoteScreen> {
                           itemBuilder: (context, index) {
                             return UserVoteTile(
                               userDoc: snapshot.data!.docs[index],
-                              showVote: _revealed,
                             );
                           },
                         );
@@ -137,16 +121,15 @@ class _VoteScreenState extends State<VoteScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ClearSessionButton(sessionId: widget.sessionId),
+                  ClearSessionButton(sessionId: sessionId),
                   SizedBox(width: 20),
-                  ClearVotesButton(sessionId: widget.sessionId),
+                  ClearVotesButton(sessionId: sessionId),
                 ],
-              )
+              ),
             ],
           ),
         ),
       ),
     );
   }
-}
 }

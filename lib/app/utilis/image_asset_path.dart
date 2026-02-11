@@ -1,3 +1,5 @@
+// This is a class for naming the image assets in the project.
+
 class ImageAssets {
   ImageAssets._();
 
@@ -14,13 +16,12 @@ class ImageAssets {
   static const String voteEighty = 'assets/votes/80.jpg';
   static const String lightBG = 'assets/backgrounds/lightbg.jpg';
   static const String darkBG = 'assets/backgrounds/darkbg.jpg';
-  static const String submitButton = 'assets/buttons/submit.png';
-  static const String avatar = 'assets/avatar.png';
+  static const String submitButton = 'assets/buttons/submit.svg';
+  static const String avatar = 'assets/avatar.svg';
   static const String poker = 'assets/poker.png';
-  static const String pokerResult = 'assets/poker_result.jpg';
-  static const String clearButton = 'assets/buttons/delete.png';
-  static const String delvotesButton = 'assets/buttons/delete_votes.png';
-
+  static const String clearButton = 'assets/buttons/delete.svg';
+  static const String delvotesButton = 'assets/buttons/delete_votes.svg';
+  // List of all vote image paths for easy access
   static const List<String> allVotes = [
     voteZero,
     voteOne,

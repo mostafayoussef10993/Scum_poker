@@ -19,6 +19,8 @@ dependencies:
   get_it: 
   google_fonts:
   quickalert: 
+  flutter_svg: 
+  dropdown_button2:
    
 
 dev_dependencies:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:scum_poker/app/data/firebase_repository.dart';
 import 'package:scum_poker/app/models/session_model.dart';
 import 'package:scum_poker/app/presentations/vote/vote_screen.dart';
@@ -47,11 +48,11 @@ class SubmitNameButton extends StatelessWidget {
           ),
         );
       },
-      child: Ink.image(
-        image: Image.asset(ImageAssets.submitButton).image,
+      child: SvgPicture.asset(
+        ImageAssets.submitButton,
         height: 80,
         width: 150,
-        fit: BoxFit.cover,
+        fit: BoxFit.contain,
       ),
     );
   }
