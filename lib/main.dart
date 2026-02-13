@@ -23,14 +23,14 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return ThemeBackground(
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: FontTheme.lightTheme,
-        darkTheme: FontTheme.darkTheme,
-        themeMode: ThemeMode.system,
-        home: MultiBlocProvider(
-          providers: [BlocProvider(create: (_) => getIt<NameCubit>())],
-          child: SplashScreen(),
+      child: MultiBlocProvider(
+        providers: [BlocProvider(create: (_) => getIt<NameCubit>())],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: FontTheme.lightTheme,
+          darkTheme: FontTheme.darkTheme,
+          themeMode: ThemeMode.system,
+          home: SplashScreen(),
         ),
       ),
     );

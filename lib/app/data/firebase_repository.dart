@@ -57,6 +57,24 @@ class VoteRepository {
         .snapshots();
   }
 
+  // NEW: Stream list of sessions
+  Stream<List<Map<String, dynamic>>> getSessionsStream() {
+    return _firestore.collection('sessions').snapshots().map((snap) {
+      return snap.docs
+          .map((d) => {'id': d.id, ...?d.data() as Map<String, dynamic>?})
+          .toList();
+    });
+  }
+
+  // NEW: Create a session with a name and return its id
+  Future<String> createSession({required String name}) async {
+    final docRef = await _firestore.collection('sessions').add({
+      'name': name,
+      'createdAt': FieldValue.serverTimestamp(),
+    });
+    return docRef.id;
+  }
+
   // STEP 4: Get vote counts for a specific session
   Future<Map<int, int>> getVoteCounts({required String sessionId}) async {
     Map<int, int> counts = {};

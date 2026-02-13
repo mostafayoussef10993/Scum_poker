@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:scum_poker/app/data/firebase_repository.dart';
 import 'package:scum_poker/app/models/session_model.dart';
+import 'package:scum_poker/app/utilis/service_locator.dart';
 import 'package:scum_poker/app/utilis/image_asset_path.dart';
 import 'package:scum_poker/app/widgets/drop_list_session.dart';
 import 'package:scum_poker/app/widgets/subit_name_button.dart';
@@ -15,10 +17,6 @@ class NameScreen extends StatefulWidget {
 class _NameScreenState extends State<NameScreen> {
   final TextEditingController myController = TextEditingController();
   SessionModel? selectedSession;
-  final List<SessionModel> sessionList = [
-    SessionModel(id: '1', name: 'Room 1', createdAt: DateTime.now()),
-    SessionModel(id: '2', name: 'Room 2', createdAt: DateTime.now()),
-  ];
 
   @override
   void dispose() {
@@ -99,13 +97,49 @@ class _NameScreenState extends State<NameScreen> {
                       ),
                     ),
                     SizedBox(height: 12),
-                    DropListSession(
-                      selectedSession: selectedSession,
-                      sessionList: sessionList,
-                      onChanged: (value) {
-                        setState(() {
-                          selectedSession = value;
-                        });
+                    StreamBuilder<List<Map<String, dynamic>>>(
+                      stream: getIt<VoteRepository>().getSessionsStream(),
+                      builder: (context, snapshot) {
+                        final sessions = snapshot.hasData
+                            ? snapshot.data!
+                                  .map(
+                                    (m) => SessionModel(
+                                      id: m['id'].toString(),
+                                      name: (m['name'] ?? 'Unnamed').toString(),
+                                      createdAt: m['createdAt'] != null
+                                          ? DateTime.tryParse(
+                                                  (m['createdAt'] ?? '')
+                                                      .toString(),
+                                                ) ??
+                                                DateTime.now()
+                                          : DateTime.now(),
+                                    ),
+                                  )
+                                  .toList()
+                            : <SessionModel>[];
+
+                        return DropListSession(
+                          selectedSession: selectedSession,
+                          sessionList: sessions,
+                          onChanged: (value) {
+                            setState(() {
+                              selectedSession = value;
+                            });
+                          },
+                          onSessionAdded: (newSession) {
+                            setState(() {
+                              // Clear selection after adding; user will manually select from updated list
+                              selectedSession = null;
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Session "${newSession.name}" created! Please select it from the dropdown.',
+                                  ),
+                                ),
+                              );
+                            });
+                          },
+                        );
                       },
                     ),
                   ],
