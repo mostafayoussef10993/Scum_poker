@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:scum_poker/app/data/firebase_repository.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scum_poker/app/bloc/user_cubit.dart';
 import 'package:scum_poker/app/models/session_model.dart';
 import 'package:scum_poker/app/presentations/vote/vote_screen.dart';
 import 'package:scum_poker/app/utilis/image_asset_path.dart';
@@ -32,21 +33,28 @@ class SubmitNameButton extends StatelessWidget {
           ).showSnackBar(SnackBar(content: Text('Name Is Not Submitted Yet')));
           return;
         }
-        String userId = DateTime.now().millisecondsSinceEpoch.toString();
+        try {
+          final newUser = await context.read<NameCubit>().saveName(
+            name,
+            selectedSession!.id,
+          );
 
-        await getIt<VoteRepository>().saveUserName(
-          sessionId: selectedSession!.id,
-          userId: userId,
-          userName: controller.text,
-        );
-        registerVoteCubit(selectedSession!.id, userId);
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) =>
-                VoteScreen(sessionId: selectedSession!.id, userId: userId),
-          ),
-        );
+          registerVoteCubit(selectedSession!.id, newUser.id);
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => VoteScreen(
+                sessionId: selectedSession!.id,
+                userId: newUser.id,
+              ),
+            ),
+          );
+        } catch (e) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text('Failed to save name: $e')));
+        }
       },
       child: SvgPicture.asset(
         ImageAssets.submitButton,

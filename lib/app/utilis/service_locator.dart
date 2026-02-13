@@ -14,7 +14,7 @@ void setupServiceLocator() {
     VoteRepository(getIt<FirebaseFirestore>()),
   );
 
-  getIt.registerSingleton<NameCubit>(NameCubit());
+  getIt.registerSingleton<NameCubit>(NameCubit(getIt<VoteRepository>()));
 }
 
 void registerVoteCubit(String sessionId, String userId) {

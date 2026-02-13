@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scum_poker/app/models/user_model.dart';
+import 'package:uuid/uuid.dart';
+import 'package:scum_poker/app/data/firebase_repository.dart';
 
 class NameState {
   final UserModel? user;
@@ -13,14 +15,21 @@ class NameState {
 }
 
 class NameCubit extends Cubit<NameState> {
-  NameCubit() : super(NameState());
-  void saveName(String name) {
-    final newUser = UserModel(
-      id: DateTime.now().microsecondsSinceEpoch.toString(),
-      name: name,
+  final VoteRepository _repository;
+
+  NameCubit(this._repository) : super(NameState());
+
+  /// Save name to Firestore under [sessionId] and emit new state.
+  /// Returns the created UserModel.
+  Future<UserModel> saveName(String name, String sessionId) async {
+    final newUser = UserModel(id: Uuid().v4(), name: name);
+    await _repository.saveUserName(
+      sessionId: sessionId,
+      userId: newUser.id,
+      userName: newUser.name,
     );
     emit(state.copyWith(user: newUser, isSaved: true));
-    print("Saved user: id=${newUser.id}, name=${newUser.name}");
+    return newUser;
   }
 
   void clearName() {

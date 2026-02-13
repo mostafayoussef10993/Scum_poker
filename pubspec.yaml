@@ -19,6 +19,7 @@ dependencies:
   get_it: 
   google_fonts:
   quickalert: 
+  uuid: 
   flutter_svg: 
   dropdown_button2:
    
